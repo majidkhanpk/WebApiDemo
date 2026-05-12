@@ -1,0 +1,23 @@
+﻿using System.ComponentModel.DataAnnotations;
+using WebApiDemo.Models.Validations;
+
+namespace WebApiDemo.Models
+{
+    public class Shirt
+    {
+        public int shirtId { get; set; }
+        [Required]
+        public string? Brand { get; set; }
+        [Required]
+        public string? Color { get; set; }
+
+        [Shirts_EnsureCorrectSizingAttribute]
+        public int Size { get; set; }
+        
+        [Required]
+        public string? Gender { get; set; }
+
+        public double Price { get; set; }
+
+    }
+}

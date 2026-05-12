@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApiDemo.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,7 +22,7 @@ namespace WebApiDemo.Controllers
         }
 
         [HttpPost]
-        public string CreateShirt()
+        public string CreateShirt([FromBody]Shirt shirt)
         {
             return "Create Shirt";
         }
