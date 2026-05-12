@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApiDemo.Filters;
 using WebApiDemo.Models;
+using WebApiDemo.Models.Repositories;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,34 +11,48 @@ namespace WebApiDemo.Controllers
     [ApiController]
     public class ShirtsController : ControllerBase
     {
+       
+
         [HttpGet]
-        public string GetShirts()
+        public IActionResult GetShirts()
         {
-            return "Get all Shirts";
+            return Ok("Get all Shirts");
         }
 
         [HttpGet("{id}")]
-        public string GetShirtById(int id)
+        [Shirt_ValidateShirtIdFilter]
+        public IActionResult GetShirtById(int id)
         {
-            return $"Reading Shirt {id}";
+            return Ok(ShirtRepository.GetShirtById(id));
+            //if (id <= 0) { 
+            //    return BadRequest();
+            //}
+
+            //var shirt = ShirtRepository.GetShirtById(id);
+            //if (shirt == null) { 
+            //    return NotFound();
+            //}
+
+            //return Ok(shirt);
+            
         }
 
         [HttpPost]
-        public string CreateShirt([FromBody]Shirt shirt)
+        public IActionResult CreateShirt([FromBody]Shirt shirt)
         {
-            return "Create Shirt";
+            return Ok("Create Shirt");
         }
 
         [HttpPut("{id}")]
-        public string UpdateShirt(int id)
+        public IActionResult UpdateShirt(int id)
         {
-            return $"Update Shirt {id}";
+            return Ok($"Update Shirt {id}");
         }
 
         [HttpDelete("{id}")]
-        public string DeleteShirt(int id)
+        public IActionResult DeleteShirt(int id)
         {
-            return $"Delete Shirt {id}";
+            return Ok($"Delete Shirt {id}");
         }
     }
 }

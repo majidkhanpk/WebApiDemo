@@ -5,7 +5,7 @@ namespace WebApiDemo.Models
 {
     public class Shirt
     {
-        public int shirtId { get; set; }
+        public int ShirtId { get; set; }
         [Required]
         public string? Brand { get; set; }
         [Required]
